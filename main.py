@@ -14,7 +14,7 @@ while True:
         # Gone through for more than one time, allows person to quit
         currentUnit = input("What is the unit of the temperature you want to convert (F, C, K, or Q if you want to stop): ").upper()
         while not currentUnit in unitOptions:
-            currentUnit = input("Please enter either F, C, Q, or K (is not case sensitive): ").upper()
+            currentUnit = input("Please enter either F, C, K, or Q (is not case sensitive): ").upper()
 
     if currentUnit == "Q":
         break
@@ -34,16 +34,15 @@ while True:
     if currentUnit == "C" and conversionUnit == "F":
         convertedTemperature = (currentTemperature * 1.8) + 32
     elif currentUnit == "C" and conversionUnit == "K":
-        convertedTemperature += CELSIUS_TO_KELVIN
+        convertedTemperature = currentTemperature + CELSIUS_TO_KELVIN
     elif currentUnit == "F" and conversionUnit == "C":
-        convertedTemperature = (currentTemperature - 32) * 0.5556
+        convertedTemperature = (currentTemperature - 32) * 5 / 9
     elif currentUnit == "F" and conversionUnit == "K":
-        convertedTemperature = (currentTemperature - 32) * 0.5556 # Convert to celsius first 
-        convertedTemperature += CELSIUS_TO_KELVIN
+        convertedTemperature = ((currentTemperature - 32) * 5 / 9) + CELSIUS_TO_KELVIN
     elif currentUnit == "K" and conversionUnit == "C":
-        convertedTemperature -= CELSIUS_TO_KELVIN
-    elif currentUnit == "K" and conversionUnit == "F":
-        convertedTemperature = (currentTemperature - CELSIUS_TO_KELVIN) * 0.5556 + 32
+        convertedTemperature = currentTemperature - CELSIUS_TO_KELVIN
+    else: 
+        convertedTemperature = ((currentTemperature - CELSIUS_TO_KELVIN) * 1.8) + 32
 
     # Prints the converted temperature, rounded to 2 decimals. 
     if conversionUnit == "F" or conversionUnit == "C":
